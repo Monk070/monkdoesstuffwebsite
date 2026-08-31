@@ -22,8 +22,9 @@
 
 body {
   margin: 0;
+  /* Extra Bold is the house style, same as hookline.fun */
   font-family: "Montserrat", "Segoe UI", system-ui, sans-serif;
-  font-weight: 600;
+  font-weight: 800;
   background:
     radial-gradient(ellipse 90% 40% at 50% -5%, #1e1b2e 0%, transparent 60%),
     var(--bg);
@@ -59,7 +60,9 @@ a { color: var(--mint); }
   background-clip: text;
   color: transparent;
 }
-#site-tag { color: var(--text-dim); margin: 10px 0 22px; font-weight: 600; }
+#site-tag { color: var(--text-dim); margin: 10px 0 22px; }
+
+.icon { width: 14px; height: 14px; vertical-align: -2px; }
 
 /* ---- tabs ---- */
 #tabs { display: inline-flex; gap: 6px; background: var(--panel); border: 1px solid var(--border); border-radius: 999px; padding: 5px; }
@@ -139,7 +142,7 @@ a.card:hover {
 .card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .card-body.center { text-align: center; padding: 40px 24px; }
 .card-body h2 { margin: 0; font-size: 1.15rem; font-weight: 800; }
-.card-body p { margin: 0; color: var(--text-dim); font-weight: 600; font-size: 0.92rem; line-height: 1.45; }
+.card-body p { margin: 0; color: var(--text-dim); font-weight: 700; font-size: 0.92rem; line-height: 1.45; }
 
 .cta {
   margin-top: auto;
@@ -191,6 +194,24 @@ a.card:hover .cta { filter: brightness(1.12); }
 }
 
 .card.placeholder { grid-column: 1 / -1; border-style: dashed; background: transparent; }
+
+/* TikTok sticker: marks the interactive TikTok versions */
+.tiktok-badge {
+  position: absolute;
+  top: 10px; left: 10px;
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px #000a, 0 0 0 2px #ffffff22;
+  transform: rotate(-8deg);
+  z-index: 2;
+}
+.tiktok-badge svg { width: 19px; height: 19px; color: #fff; filter: drop-shadow(1px 1px 0 #fe2c55) drop-shadow(-1px -1px 0 #25f4ee); }
+/* stays full-colour even on the greyed coming-soon art */
+.card.soon .tiktok-badge { filter: none; }
 
 /* ---- footer ---- */
 footer { margin-top: auto; padding: 26px 0 30px; color: var(--text-dim); font-size: 0.85rem; }
