@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PriceTag</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>🏷️</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="stage">
+    <header id="masthead">
+      <img id="logo" src="Logo.png" alt="PriceTag">
+      <p id="tagline">guess the price · closest wins</p>
+    </header>
+
+    <!-- idle: waiting for the streamer to start -->
+    <section id="idle-screen">
+      <div class="boxpile">📦🏠🧸</div>
+      <p id="idle-note">Loading the goods…</p>
+      <button id="start-btn" class="big-btn" hidden>Let's play!</button>
+    </section>
+
+    <!-- guessing: the item card + timer -->
+    <section id="round-screen" hidden>
+      <div id="item-card">
+        <div id="item-photo-wrap">
+          <img id="item-photo" alt="">
+          <div id="item-photo-fallback" hidden>📦</div>
+          <div id="photo-dots" hidden></div>
+          <div id="price-tag">£?</div>
+        </div>
+        <h2 id="item-title"></h2>
+        <p id="item-source"></p>
+      </div>
+      <div id="timer-row">
+        <div id="timer-bar"><div id="timer-fill"></div></div>
+        <span id="timer-text">40</span>
+      </div>
+      <p id="round-cta"></p>
+      <div id="guess-feed"></div>
+      <div id="guess-count">0 guesses</div>
+    </section>
+
+    <!-- reveal: the real price + podium -->
+    <section id="reveal-screen" hidden>
+      <p id="reveal-label">it actually costs</p>
+      <div id="reveal-price">£0</div>
+      <p id="reveal-gbp" hidden></p>
+      <div id="podium"></div>
+      <div id="leaderboard">
+        <h3>🏆 all-time</h3>
+        <ol id="leader-rows"></ol>
+      </div>
+      <p id="next-note"></p>
+    </section>
+
+    <canvas id="confetti"></canvas>
+  </main>
+
+  <!-- streamer/dev panel — backtick toggles; ?dev=0 hides for OBS -->
+  <aside id="panel" class="hidden">
+    <div class="p-row">
+      <input id="tiktok-user" type="text" placeholder="@yourusername" autocomplete="off" spellcheck="false">
+      <button id="tiktok-connect-btn">Connect</button>
+    </div>
+    <div class="p-note" id="tiktok-note">Go live on TikTok, then connect your username</div>
+    <div class="p-row">
+      <button id="p-start">▶ Start round</button>
+      <button id="p-reveal">Reveal now</button>
+      <button id="p-skip">Skip item</button>
+      <select id="set-mode" title="Which catalogue to draw from">
+        <option value="mixed">Mixed</option>
+        <option value="items">Items only</option>
+        <option value="property">Property only</option>
+      </select>
+      <select id="set-currency" title="Fixed GBP, or a random currency every round">
+        <option value="gbp">£ GBP</option>
+        <option value="random">🎲 Random currency</option>
+      </select>
+    </div>
+    <div class="p-row p-settings">
+      <label>Round <input id="set-round" type="number" min="10" max="180" step="5"> s</label>
+      <label>Reveal <input id="set-reveal" type="number" min="4" max="60" step="1"> s</label>
+      <label><input id="set-autonext" type="checkbox"> auto-next</label>
+      <label><input id="set-sound" type="checkbox" checked> sound</label>
+    </div>
+    <div class="p-row">
+      <input id="sim-input" type="text" placeholder="alice: 4.50   (fake a chat guess)" autocomplete="off" spellcheck="false">
+      <button id="sim-send">Send</button>
+    </div>
+    <div class="p-row">
+      <button id="sim-crowd">Fake crowd</button>
+      <button id="sim-auto">Auto-play</button>
+      <button id="reset-scores">Reset leaderboard</button>
+    </div>
+    <div class="p-status">
+      <span id="conn-pill" class="pill off">tiktok: off</span>
+      <span class="p-hint">` toggles panel · catalog: <span id="cat-count">0</span> items</span>
+    </div>
+    <div id="log" aria-label="event feed"></div>
+  </aside>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

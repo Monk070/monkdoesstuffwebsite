@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="hsl(30 70% 55%)"/><stop offset="1" stop-color="hsl(15 65% 25%)"/>
+</linearGradient></defs>
+<rect width="1280" height="720" fill="url(#sky)"/>
+<circle cx="1080" cy="150" r="70" fill="hsl(15 80% 75%)"/>
+<path d="M0 540 Q320 508 640 520 T1280 500 V720 H0 Z" fill="hsl(30 45% 22%)"/>
+<path d="M0 620 Q400 505 800 610 T1280 600 V720 H0 Z" fill="hsl(15 40% 14%)"/>
+<circle cx="369" cy="329" r="47" fill="hsl(15 70% 37%)"/><rect x="891" y="543" width="90" height="135" fill="hsl(15 55% 31%)"/><rect x="418" y="496" width="114" height="171" fill="hsl(15 55% 54%)"/><circle cx="1277" cy="392" r="30" fill="hsl(15 70% 47%)"/><circle cx="301" cy="350" r="36" fill="hsl(30 70% 42%)"/><rect x="415" y="365" width="96" height="144" fill="hsl(15 55% 43%)"/><circle cx="443" cy="393" r="36" fill="hsl(15 70% 38%)"/><circle cx="735" cy="494" r="21" fill="hsl(30 70% 62%)"/><rect x="189" y="444" width="74" height="111" fill="hsl(15 55% 33%)"/><circle cx="496" cy="385" r="37" fill="hsl(30 70% 64%)"/><circle cx="38" cy="526" r="43" fill="hsl(30 70% 49%)"/><circle cx="56" cy="503" r="46" fill="hsl(15 70% 64%)"/><rect x="767" y="600" width="58" height="87" fill="hsl(15 55% 39%)"/><circle cx="184" cy="637" r="16" fill="hsl(30 70% 74%)"/>
+</svg>

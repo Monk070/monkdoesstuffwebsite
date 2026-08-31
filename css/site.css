@@ -1,0 +1,197 @@
+/* MonkDoesStuff — same dark house style as hookline.fun (Montserrat 800 on
+   #121216) with the Bungee gradient wordmark trick reused for the site logo
+   and the in-card Hookline marks. */
+
+:root {
+  --bg: #121216;
+  --panel: #1c1c24;
+  --panel-2: #26262f;
+  --text: #eaeaf0;
+  --text-dim: #9a9aa8;
+  --green: #1db954;
+  --mint: #7ee2a0;
+  --purple: #6c5ce7;
+  --lilac: #a99bff;
+  --gold: #f7c948;
+  --red: #e0392e;
+  --border: #34343f;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Montserrat", "Segoe UI", system-ui, sans-serif;
+  font-weight: 600;
+  background:
+    radial-gradient(ellipse 90% 40% at 50% -5%, #1e1b2e 0%, transparent 60%),
+    var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a { color: var(--mint); }
+
+/* ---- masthead ---- */
+#masthead { text-align: center; padding: 40px 16px 8px; }
+
+#site-logo {
+  font-family: "Bungee", "Segoe UI", sans-serif;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 7vw, 3.6rem);
+  margin: 0;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  background: linear-gradient(100deg, var(--gold) 10%, #ff9d5c 45%, var(--red) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 4px 14px rgba(247, 201, 72, 0.22));
+  user-select: none;
+}
+#site-logo span {
+  background: linear-gradient(100deg, var(--purple), var(--lilac));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+#site-tag { color: var(--text-dim); margin: 10px 0 22px; font-weight: 600; }
+
+/* ---- tabs ---- */
+#tabs { display: inline-flex; gap: 6px; background: var(--panel); border: 1px solid var(--border); border-radius: 999px; padding: 5px; }
+.tab {
+  padding: 8px 26px;
+  border-radius: 999px;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.tab:hover { color: var(--text); }
+.tab.active { background: var(--panel-2); color: var(--text); border: 1px solid var(--border); }
+
+/* ---- card grid ---- */
+.grid {
+  width: min(1100px, 94vw);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 22px;
+  padding: 34px 0 20px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text);
+}
+a.card { transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease; }
+a.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--green);
+  box-shadow: 0 14px 34px rgba(29, 185, 84, 0.18);
+}
+
+.card-art {
+  position: relative;
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse 80% 90% at 50% 110%, #26263a 0%, transparent 70%),
+    var(--panel-2);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+.art-img { max-width: 78%; max-height: 72%; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5)); }
+
+/* Hookline wordmark, exactly as hookline.fun renders it */
+.hookline-mark {
+  font-family: "Bungee", "Segoe UI", sans-serif;
+  font-size: clamp(1.7rem, 4.2vw, 2.4rem);
+  line-height: 1;
+  background: linear-gradient(100deg, var(--green) 20%, var(--mint) 45%, var(--purple) 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 4px 14px rgba(29, 185, 84, 0.22));
+  user-select: none;
+}
+.hookline-mark .tld {
+  font-size: 0.34em;
+  margin-left: 5px;
+  background: linear-gradient(100deg, var(--lilac), var(--mint));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.card-body.center { text-align: center; padding: 40px 24px; }
+.card-body h2 { margin: 0; font-size: 1.15rem; font-weight: 800; }
+.card-body p { margin: 0; color: var(--text-dim); font-weight: 600; font-size: 0.92rem; line-height: 1.45; }
+
+.cta {
+  margin-top: auto;
+  align-self: flex-start;
+  background: var(--green);
+  color: #08130b;
+  font-weight: 800;
+  padding: 9px 20px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+a.card:hover .cta { filter: brightness(1.12); }
+
+.badge {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: var(--green);
+  color: #08130b;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  box-shadow: 0 0 14px rgba(29, 185, 84, 0.5);
+}
+
+/* ---- coming soon treatment ---- */
+.card.soon .card-art > .hookline-mark,
+.card.soon .card-art > .art-img {
+  filter: grayscale(1) brightness(0.75) opacity(0.45);
+}
+.card.soon .card-body h2 { color: var(--text-dim); }
+
+.stamp {
+  position: absolute;
+  font-family: "Bungee", "Segoe UI", sans-serif;
+  font-size: 1.5rem;
+  color: var(--red);
+  border: 4px solid var(--red);
+  border-radius: 8px;
+  padding: 4px 16px;
+  transform: rotate(-14deg);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  box-shadow: inset 0 0 12px rgba(224, 57, 46, 0.25), 0 0 18px rgba(0, 0, 0, 0.45);
+  background: rgba(18, 18, 22, 0.35);
+  user-select: none;
+}
+
+.card.placeholder { grid-column: 1 / -1; border-style: dashed; background: transparent; }
+
+/* ---- footer ---- */
+footer { margin-top: auto; padding: 26px 0 30px; color: var(--text-dim); font-size: 0.85rem; }
+footer p { margin: 0; }

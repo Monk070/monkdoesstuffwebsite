@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hookline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="layout">
+
+    <!-- LEFT: settings console -->
+    <aside id="left-col" class="col-panel">
+      <h2 class="col-title"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/></svg> Settings</h2>
+      <section id="settings-panel">
+        <div class="setting-row" id="row-tiktok">
+          <span class="setting-label">TikTok LIVE</span>
+          <div id="tiktok-connect-row">
+            <input type="text" id="tiktok-user" placeholder="@yourusername" autocomplete="off" spellcheck="false">
+            <button id="tiktok-connect-btn" class="chip">Connect</button>
+          </div>
+          <div class="setting-note" id="tiktok-note">Go live on TikTok, then connect your username</div>
+        </div>
+
+        <details class="sgroup" data-group="game">
+          <summary><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Game rules</summary>
+          <div class="setting-row" id="row-stages">
+            <span class="setting-label">Clip lengths</span>
+            <div class="chips" id="stage-chips">
+              <button class="chip" data-stage="0.1">0.1s</button>
+              <button class="chip" data-stage="0.2">0.2s</button>
+              <button class="chip" data-stage="0.5">0.5s</button>
+              <button class="chip" data-stage="2">2s</button>
+              <button class="chip" data-stage="5">5s</button>
+              <button class="chip" data-stage="8">8s</button>
+              <button class="chip" data-stage="15">15s</button>
+            </div>
+            <div class="setting-note">Which clip lengths a round steps through (shorter = more points). Applies from the next song</div>
+          </div>
+          <div class="setting-row" id="row-skippct">
+            <span class="setting-label">!skip threshold</span>
+            <div id="skippct-wrap">
+              <input type="range" id="skippct-slider" min="0" max="100" value="25">
+              <span id="skippct-value">25%</span>
+            </div>
+            <div class="setting-note">% of current viewers voting <code>!skip</code> to unlock the next clip length</div>
+          </div>
+          <div class="setting-row" id="row-purchasemode">
+            <span class="setting-label">!genre/!era purchases</span>
+            <div class="chips" id="purchasemode-chips">
+              <button class="chip" data-pm="queue">Queue up</button>
+              <button class="chip" data-pm="override">Override</button>
+            </div>
+            <div class="setting-note">If someone buys while another purchase is running: wait its turn, or replace it</div>
+          </div>
+          <div class="setting-row" id="row-follow">
+            <span class="setting-label">Follow to play</span>
+            <div class="chips" id="follow-chips">
+              <button class="chip" data-follow="true">On</button>
+              <button class="chip" data-follow="false">Off</button>
+            </div>
+            <div class="setting-note">Viewers must follow you before guesses and purchases count. New follows unlock instantly</div>
+          </div>
+          <div class="setting-row" id="row-automode">
+            <span class="setting-label">Auto mode (AFK)</span>
+            <div class="chips" id="automode-chips">
+              <button class="chip" data-auto="true">On</button>
+              <button class="chip" data-auto="false">Off</button>
+            </div>
+            <div class="chips" id="autogap-chips">
+              <button class="chip" data-gap="500">0.5s gap</button>
+              <button class="chip" data-gap="1000">1s gap</button>
+              <button class="chip" data-gap="2000">2s gap</button>
+            </div>
+            <div class="setting-note">Loops the clip; a guessed song plays its full preview then the next round starts by itself</div>
+          </div>
+        </details>
+
+        <details class="sgroup" data-group="bank">
+          <summary><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10"/><path d="M15 9.5c0-1.1-1.34-2-3-2s-3 .9-3 2 1.34 2 3 2 3 .9 3 2-1.34 2-3 2-3-.9-3-2"/></svg> Gifts &amp; bank</summary>
+          <div class="setting-row" id="row-bank">
+            <span class="setting-label">!bank rates</span>
+            <div id="coinratio-wrap">
+              <input type="number" id="coinratio-input" min="0" step="0.5" value="1">
+              <span class="num-suffix">banked pts per gifted coin</span>
+            </div>
+            <div id="likesrate-wrap">
+              <input type="number" id="likesrate-input" min="0" step="1" value="10">
+              <span class="num-suffix">likes per 1 banked pt (0 = off)</span>
+            </div>
+            <div class="setting-note">Gifts and likes bank points in a separate pot, spent first on <code>!genre</code>/<code>!era</code></div>
+          </div>
+          <div class="setting-row" id="row-bankrotate">
+            <span class="setting-label">Podium rotation</span>
+            <div class="chips" id="bankrotate-chips">
+              <button class="chip" data-rot="0">Leaderboard only</button>
+              <button class="chip" data-rot="5">5s</button>
+              <button class="chip" data-rot="10">10s</button>
+              <button class="chip" data-rot="15">15s</button>
+            </div>
+            <div class="setting-note">The podium alternates Leaderboard ↔ Bank at this pace</div>
+          </div>
+          <div class="setting-row" id="row-wheelspin">
+            <span class="setting-label">Gift wheel spin</span>
+            <div id="wheelcoins-wrap">
+              <input type="number" id="wheelcoins-input" min="0" step="1" value="0">
+              <span class="num-suffix">coins to spin (0 = off)</span>
+            </div>
+            <div id="spinscale-wrap">
+              <input type="range" id="spinscale-slider" min="50" max="150" step="5" value="100">
+              <span id="spinscale-value">100%</span>
+              <span class="num-suffix">wheel size</span>
+            </div>
+            <div id="spinpos-wrap">
+              <input type="range" id="spinpos-slider" min="0" max="100" step="5" value="50">
+              <span id="spinpos-value">50%</span>
+              <span class="num-suffix">wheel position</span>
+            </div>
+            <div class="chips">
+              <button class="chip" id="testspin-btn">Test spin</button>
+            </div>
+            <div class="setting-note">A single gift worth this many coins spins the wheel: 10K banked jackpot · free genre pick · free era pick · 1K banked · 2.5K banked</div>
+          </div>
+        </details>
+
+        <details class="sgroup" data-group="look">
+          <summary><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/></svg> Look &amp; sound</summary>
+          <div class="setting-row" id="row-volume">
+            <span class="setting-label">Volume</span>
+            <div id="volume-wrap" title="Volume">
+              <span id="volume-icon"></span>
+              <input type="range" id="volume-slider" min="0" max="100" value="70">
+            </div>
+          </div>
+          <div class="setting-row" id="row-buffer">
+            <span class="setting-label">Buffer</span>
+            <div id="buffer-wrap">
+              <input type="range" id="buffer-slider" min="0" max="120" value="0">
+              <span id="buffer-value">0px</span>
+            </div>
+            <div class="setting-note">Empty space at the top of the frame, so TikTok's live UI doesn't cover the game</div>
+          </div>
+          <div class="setting-row" id="row-zoom">
+            <span class="setting-label">Game zoom</span>
+            <div id="zoom-wrap">
+              <input type="range" id="zoom-slider" min="80" max="125" step="5" value="100">
+              <span id="zoom-value">100%</span>
+            </div>
+            <div class="setting-note">Scales everything in the game column to fill the width more or less</div>
+          </div>
+          <div class="setting-row" id="row-logosize">
+            <span class="setting-label">Title size</span>
+            <div id="logosize-wrap">
+              <input type="range" id="logosize-slider" min="50" max="150" step="5" value="100">
+              <span id="logosize-value">100%</span>
+            </div>
+            <div class="setting-note">HOOKLINE.fun logo — shrink it if your monitor renders it too big</div>
+          </div>
+          <div class="setting-row" id="row-hintsize">
+            <span class="setting-label">!commands size</span>
+            <div id="hintsize-wrap">
+              <input type="range" id="hintsize-slider" min="50" max="150" step="5" value="100">
+              <span id="hintsize-value">100%</span>
+            </div>
+            <div class="setting-note">The two !song / !genre hint rows under the logo</div>
+          </div>
+        </details>
+
+        <details class="sgroup" data-group="data">
+          <summary><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg> Data &amp; resets</summary>
+          <div class="setting-row" id="row-catalog" hidden>
+            <span class="setting-label">Catalogue</span>
+            <div id="catalog-info"></div>
+            <button id="rebuild-btn" class="chip">⟳ Update catalogue</button>
+            <div class="setting-note" id="rebuild-note">Pulls the latest songs from hookline.fun</div>
+          </div>
+          <div class="setting-row" id="row-reset">
+            <span class="setting-label">Reset</span>
+            <div class="chips">
+              <button class="chip" id="clear-score-btn">Reset Score</button>
+              <button class="chip" id="clear-lb-btn">Clear Leaderboard</button>
+            </div>
+          </div>
+        </details>
+      </section>
+      <div id="left-footer">
+        <div id="conn-row">
+          <span id="tf-pill" title="TikFinity connection">● TikFinity</span>
+          <button id="stats-btn" title="Stats"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></button>
+        </div>
+        <span id="credits">Metadata: Spotify · Audio previews: Deezer</span>
+      </div>
+    </aside>
+
+    <!-- CENTER: the game -->
+    <main id="game">
+      <h1 id="logo">Hook<span>line</span><em id="logo-tld">.fun</em></h1>
+
+      <div id="how-to">
+        <div>💬 <code>!song name</code> to guess · <code>!skip</code> for more</div>
+        <div><code>!genre</code>/<code>!era</code> 1000pts · <code>!points</code> · <code>!bank</code></div>
+      </div>
+
+      <section id="top5" hidden>
+        <h3 id="top5-title"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg> LEADERBOARD</h3>
+        <ol id="top5-list"></ol>
+      </section>
+
+      <div id="purchase-bar" hidden>
+        <span id="pb-now"></span>
+        <span id="pb-queue"></span>
+      </div>
+
+      <div id="winner-banner" hidden>
+        <img id="winner-pfp" alt="" referrerpolicy="no-referrer">
+        <div id="winner-pfp-fake" hidden>?</div>
+        <span id="winner-name"></span>
+        <span id="winner-points"></span>
+      </div>
+
+      <div id="round-badges"></div>
+
+      <div id="clipbar">
+        <div id="clipbar-segments"></div>
+        <div id="clipbar-progress"></div>
+      </div>
+      <div id="clip-marker-wrap">
+        <div id="clip-marker">
+          <span id="cm-arrow">▲</span>
+          <span id="cm-time"></span>
+        </div>
+      </div>
+
+      <div id="skipbar" hidden>
+        <span id="skipbar-label">!skip</span>
+        <div id="skipbar-track"><div id="skipbar-fill"></div></div>
+      </div>
+
+      <div id="play-row">
+        <button id="play-btn" title="Play clip"><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor"><path d="M5.5 5.14v13.72c0 .8.87 1.3 1.56.88l11.2-6.86a1.03 1.03 0 0 0 0-1.76L7.06 4.26A1.03 1.03 0 0 0 5.5 5.14Z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+        <button id="skip-btn"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" x2="19" y1="5" y2="19"/></svg> Skip</button>
+      </div>
+
+      <div id="guess-box">
+        <input type="text" id="guess-input" placeholder="Type a song title or artist…" autocomplete="off" spellcheck="false">
+        <ul id="suggestions" hidden></ul>
+      </div>
+
+      <div id="reveal" hidden>
+        <h2 id="reveal-outcome"></h2>
+        <div id="reveal-card">
+          <img id="reveal-cover" alt="Album cover">
+          <div id="reveal-meta">
+            <div id="reveal-title"></div>
+            <div id="reveal-artist"></div>
+            <div id="reveal-info"></div>
+            <a id="reveal-spotify" target="_blank" rel="noopener">Open in Spotify ↗</a>
+          </div>
+        </div>
+        <div id="reveal-points"></div>
+        <div id="reveal-progress"><div id="reveal-progress-fill"></div></div>
+        <div class="actions">
+          <button id="replay-btn" title="Replay the clip"><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor"><path d="M5.5 5.14v13.72c0 .8.87 1.3 1.56.88l11.2-6.86a1.03 1.03 0 0 0 0-1.76L7.06 4.26A1.03 1.03 0 0 0 5.5 5.14Z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+          <button id="next-btn">NEXT SONG ▶</button>
+        </div>
+      </div>
+
+      <!-- bottom quarter of the 9:16 frame stays empty: webcam goes here on stream -->
+      <div id="cam-zone"></div>
+
+      <div id="spin-overlay" hidden>
+        <div id="spin-card">
+          <div id="spin-user">
+            <img id="spin-pfp" alt="" referrerpolicy="no-referrer" hidden>
+            <span id="spin-pfp-fake" hidden></span>
+            <span id="spin-name"></span>
+          </div>
+          <div id="spin-title"></div>
+          <div id="spin-wheel-wrap">
+            <svg id="spin-wheel" viewBox="0 0 200 200"></svg>
+            <div id="spin-pointer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21 4 7h16L12 21Z"/></svg></div>
+          </div>
+          <div id="spin-result"></div>
+        </div>
+      </div>
+
+      <div id="party-overlay" hidden>
+        <div id="party-rays"></div>
+        <div id="party-rays2"></div>
+        <div id="party-card">
+          <img id="party-pfp" alt="" referrerpolicy="no-referrer" hidden>
+          <div id="party-title">MONK IS HERE!</div>
+          <div id="party-handle">@monkdoesstuff</div>
+          <div id="party-credit">Song Credit: LovDev — The Game Dev</div>
+        </div>
+      </div>
+
+      <div id="overlay" hidden>
+        <div id="overlay-content"></div>
+      </div>
+    </main>
+
+    <!-- RIGHT: viewer console -->
+    <aside id="right-col" class="col-panel">
+      <h2 class="col-title"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Viewers <span id="viewer-count" title="Current live viewers">0</span></h2>
+      <section id="tiktok-panel">
+        <div id="tiktok-panel-head">
+          <span id="tf-hint">chat: <code>!your guess</code> · <code>!skip</code></span>
+          <button id="chat-clear" title="Clear the chat log">clear</button>
+        </div>
+        <ul id="chat-feed"></ul>
+        <div id="sim-row">
+          <input type="text" id="sim-input" placeholder="Simulate chat: name: !guess" autocomplete="off">
+          <button id="autotest-btn" title="Simulated chatroom of 10 fake viewers">▶ Auto-test</button>
+        </div>
+      </section>
+    </aside>
+
+  </div>
+
+  <!-- iOS-style scroll wheel for the settings pickers -->
+  <div id="wheel-overlay" hidden>
+    <div id="wheel-card">
+      <div id="wheel-title"></div>
+      <div id="wheel-wrap">
+        <div id="wheel"></div>
+        <div id="wheel-highlight"></div>
+      </div>
+      <button id="wheel-done" class="big-btn">DONE</button>
+    </div>
+  </div>
+
+  <dialog id="stats-modal">
+    <h2>Stats</h2>
+    <div id="stats-content"></div>
+    <button id="stats-close">Close</button>
+  </dialog>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

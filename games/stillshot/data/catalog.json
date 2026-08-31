@@ -1,0 +1,172 @@
+{
+ "generatedAt": "2026-08-30T13:35:55.911Z",
+ "source": "starter",
+ "movies": [
+  {
+   "id": 578,
+   "t": "Jaws",
+   "y": 1975,
+   "g": [
+    "thriller"
+   ],
+   "p": 10000,
+   "ps": "assets/testframes/f01.svg",
+   "bd": [
+    "assets/testframes/f01.svg"
+   ]
+  },
+  {
+   "id": 11,
+   "t": "Star Wars",
+   "y": 1977,
+   "g": [
+    "scifi",
+    "action"
+   ],
+   "p": 20000,
+   "ps": "assets/testframes/f02.svg",
+   "bd": [
+    "assets/testframes/f02.svg"
+   ]
+  },
+  {
+   "id": 601,
+   "t": "E.T. the Extra-Terrestrial",
+   "y": 1982,
+   "g": [
+    "scifi",
+    "drama"
+   ],
+   "p": 12000,
+   "ps": "assets/testframes/f03.svg",
+   "bd": [
+    "assets/testframes/f03.svg"
+   ]
+  },
+  {
+   "id": 105,
+   "t": "Back to the Future",
+   "y": 1985,
+   "g": [
+    "scifi",
+    "comedy"
+   ],
+   "p": 20500,
+   "ps": "assets/testframes/f04.svg",
+   "bd": [
+    "assets/testframes/f04.svg"
+   ]
+  },
+  {
+   "id": 329,
+   "t": "Jurassic Park",
+   "y": 1993,
+   "g": [
+    "scifi",
+    "action"
+   ],
+   "p": 16500,
+   "ps": "assets/testframes/f05.svg",
+   "bd": [
+    "assets/testframes/f05.svg"
+   ]
+  },
+  {
+   "id": 597,
+   "t": "Titanic",
+   "y": 1997,
+   "g": [
+    "romance",
+    "drama"
+   ],
+   "p": 25500,
+   "ps": "assets/testframes/f06.svg",
+   "bd": [
+    "assets/testframes/f06.svg"
+   ]
+  },
+  {
+   "id": 603,
+   "t": "The Matrix",
+   "y": 1999,
+   "g": [
+    "scifi",
+    "action"
+   ],
+   "p": 26000,
+   "ps": "assets/testframes/f07.svg",
+   "bd": [
+    "assets/testframes/f07.svg"
+   ]
+  },
+  {
+   "id": 808,
+   "t": "Shrek",
+   "y": 2001,
+   "g": [
+    "animation",
+    "comedy"
+   ],
+   "p": 17500,
+   "ps": "assets/testframes/f08.svg",
+   "bd": [
+    "assets/testframes/f08.svg"
+   ]
+  },
+  {
+   "id": 155,
+   "t": "The Dark Knight",
+   "y": 2008,
+   "g": [
+    "action",
+    "thriller"
+   ],
+   "p": 33500,
+   "ps": "assets/testframes/f09.svg",
+   "bd": [
+    "assets/testframes/f09.svg"
+   ]
+  },
+  {
+   "id": 27205,
+   "t": "Inception",
+   "y": 2010,
+   "g": [
+    "scifi",
+    "thriller"
+   ],
+   "p": 37500,
+   "ps": "assets/testframes/f10.svg",
+   "bd": [
+    "assets/testframes/f10.svg"
+   ]
+  },
+  {
+   "id": 109445,
+   "t": "Frozen",
+   "y": 2013,
+   "g": [
+    "animation"
+   ],
+   "p": 16800,
+   "ps": "assets/testframes/f11.svg",
+   "bd": [
+    "assets/testframes/f11.svg"
+   ]
+  },
+  {
+   "id": 438631,
+   "t": "Dune",
+   "y": 2021,
+   "g": [
+    "scifi",
+    "action"
+   ],
+   "p": 13500,
+   "ps": "assets/testframes/f12.svg",
+   "bd": [
+    "assets/testframes/f12.svg"
+   ]
+  }
+ ]
+}

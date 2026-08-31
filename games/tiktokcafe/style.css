@@ -1,0 +1,197 @@
+/* TikTok Café — page chrome. The game itself renders into #game. */
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #0b0c16;
+  overflow: hidden;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+/* 9:16 logical canvas (360×640) scaled to fit the window, crisp pixels. */
+#game {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* High-res text overlay (speech bubbles) — same box as #game, not pixelated. */
+#overlay {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ---- Dev simulator panel — LEFT sidebar, keeps the game clear ---- */
+#simulator {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: 260px;
+  background: rgba(10, 12, 20, 0.92);
+  border-right: 1px solid #262a3d;
+  padding: 10px;
+  z-index: 10;
+  color: #cfd3e8;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+}
+#simulator.hidden { display: none; }
+
+/* live event terminal — fills the space under the status pills */
+#sim-log {
+  flex: 1;
+  min-height: 120px;
+  margin-top: 8px;
+  overflow-y: auto;
+  background: #0b0d16;
+  border: 1px solid #262a3d;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font: 11px/1.55 Consolas, "Courier New", monospace;
+  color: #6f7694;
+  overflow-wrap: anywhere;
+}
+.log-row.cmd  { color: #ffd98a; }
+.log-row.live { font-weight: 600; }
+.log-row.live.cmd { color: #bbf7d0; }
+#simulator.hidden { display: none; }
+
+.sim-row { display: flex; gap: 6px; margin-bottom: 8px; }
+.sim-note { color: #6a7090; font-size: 11px; margin: -4px 0 8px 2px; }
+#tiktok-user,
+#sim-input {
+  flex: 1;
+  background: #141726;
+  border: 1px solid #2c3050;
+  border-radius: 6px;
+  color: #e8eaf6;
+  padding: 6px 10px;
+  font-size: 13px;
+  outline: none;
+}
+#tiktok-user:focus,
+#sim-input:focus { border-color: #5964a8; }
+
+.sim-buttons { display: flex; flex-wrap: wrap; gap: 5px; }
+#simulator button {
+  background: #1d2135;
+  border: 1px solid #333960;
+  border-radius: 6px;
+  color: #dfe3f7;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+#simulator button:hover { background: #272c48; }
+#simulator button.on { background: #2f4a2f; border-color: #4d7a4d; }
+
+.sim-status {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+/* ---- Café Settings — RIGHT sidebar (opposite the dev panel) ---- */
+#settings {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: min(400px, 92vw);
+  display: none;
+  z-index: 20;
+}
+#settings.open { display: block; }
+.settings-box {
+  background: rgba(20, 23, 38, 0.97);
+  border-left: 1px solid #333960;
+  color: #dfe3f7;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px 18px;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+.settings-box h2 { margin: 0 0 10px; font-size: 16px; }
+.settings-box h3 { margin: 14px 0 8px; font-size: 12px; color: #9aa3cc; font-weight: 600; }
+
+/* collapsible sections */
+.set-section {
+  border: 1px solid #262a3d;
+  border-radius: 8px;
+  margin: 6px 0;
+  background: #171a2c;
+}
+.set-section summary {
+  cursor: pointer;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #9aa3cc;
+  user-select: none;
+  list-style-position: inside;
+}
+.set-section summary:hover { color: #dfe3f7; }
+.set-section[open] summary {
+  color: #dfe3f7;
+  border-bottom: 1px solid #262a3d;
+}
+.set-section .set-grid { padding: 10px; }
+.set-note {
+  margin: 8px 10px 0;
+  font-size: 11px;
+  color: #6a7090;
+}
+.set-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; }
+.set-row { display: flex; flex-direction: column; gap: 2px; }
+.set-row span { font-size: 11px; color: #8a91b8; }
+.set-row input,
+.set-row select {
+  background: #1d2135;
+  border: 1px solid #333960;
+  border-radius: 6px;
+  color: #e8eaf6;
+  padding: 5px 8px;
+  font-size: 12px;
+  outline: none;
+}
+.set-row input:focus,
+.set-row select:focus { border-color: #5964a8; }
+/* action buttons: fixed grid, max 5 per row, spanning the section width */
+.set-actions {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin-top: 16px;
+}
+.set-actions button {
+  background: #1d2135;
+  border: 1px solid #333960;
+  border-radius: 6px;
+  color: #dfe3f7;
+  padding: 7px 4px;
+  font-size: 11px;
+  cursor: pointer;
+  white-space: normal;
+  line-height: 1.25;
+}
+.set-actions button.primary { background: #2f4a2f; border-color: #4d7a4d; }
+.set-actions button:hover { filter: brightness(1.2); }
+.pill {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.pill.off { background: #3d1d24; color: #f0a3b1; }
+.pill.on  { background: #14532d; color: #bbf7d0; }
+#sim-hint { color: #6a7090; }

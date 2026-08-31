@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TikTok Café</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>☕</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="game" width="360" height="640"></canvas>
+  <canvas id="overlay"></canvas>
+
+  <!-- Dev simulator panel — toggle with backtick (`). Remove for production. -->
+  <div id="simulator" class="hidden">
+    <div class="sim-row">
+      <input id="tiktok-user" type="text" placeholder="@yourusername"
+             autocomplete="off" spellcheck="false">
+      <button id="tiktok-connect-btn">Connect</button>
+    </div>
+    <div id="tiktok-note" class="sim-note">Go live on TikTok, then connect your @username</div>
+    <div class="sim-row">
+      <input id="sim-input" type="text"
+             placeholder="alice: !chop   (name optional — just !chop works too)"
+             autocomplete="off" spellcheck="false">
+      <button id="sim-send">Send</button>
+    </div>
+    <div class="sim-buttons"></div>
+    <div class="sim-status">
+      <span id="sim-conn" class="pill off">tiktok: off</span>
+      <span id="sim-hint">` toggles this panel · auto-play simulates a live chat</span>
+    </div>
+    <div id="sim-log" aria-label="live event feed"></div>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
