@@ -214,5 +214,18 @@ a.card:hover .cta { filter: brightness(1.12); }
 .card.soon .tiktok-badge { filter: none; }
 
 /* ---- footer ---- */
-footer { margin-top: auto; padding: 26px 0 30px; color: var(--text-dim); font-size: 0.85rem; }
+footer {
+  margin-top: auto;
+  padding: 26px 0 30px;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
 footer p { margin: 0; }
+#footer-links { display: flex; gap: 16px; }
+#footer-links a { color: var(--text-dim); transition: color 0.15s ease, transform 0.15s ease; }
+#footer-links a:hover { color: var(--text); transform: translateY(-2px); }
+#footer-links svg { width: 22px; height: 22px; display: block; }
