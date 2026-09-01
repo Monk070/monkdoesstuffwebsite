@@ -213,6 +213,99 @@ a.card:hover .cta { filter: brightness(1.12); }
 /* stays full-colour even on the greyed coming-soon art */
 .card.soon .tiktok-badge { filter: none; }
 
+/* ---- install & play guide (hookline-tiktok.html) ---- */
+.guide { width: min(760px, 94vw); display: flex; flex-direction: column; gap: 34px; padding: 26px 0 30px; }
+
+.guide-hero {
+  text-align: center;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 26px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.guide-hero h2 { margin: 0; font-size: 1.3rem; }
+.guide-hero p { margin: 0; color: var(--text-dim); font-weight: 700; font-size: 0.95rem; line-height: 1.5; max-width: 54ch; }
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  background: var(--green);
+  color: #08130b;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.05rem;
+  padding: 14px 30px;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(29, 185, 84, 0.3);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.download-btn:hover { transform: translateY(-2px); filter: brightness(1.12); }
+.download-btn .icon { width: 20px; height: 20px; }
+.download-note { font-size: 0.8rem !important; }
+
+.guide-section { display: flex; flex-direction: column; gap: 18px; }
+.guide-section h3 { margin: 0; font-size: 1.1rem; display: flex; align-items: center; gap: 12px; }
+.section-num {
+  font-family: "Bungee", "Segoe UI", sans-serif;
+  font-weight: 400;
+  background: linear-gradient(100deg, var(--green) 20%, var(--mint) 45%, var(--purple) 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 1.5rem;
+}
+
+.step {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.step-text { display: flex; gap: 14px; align-items: baseline; padding: 16px 20px; }
+.step-text p { margin: 0; font-weight: 700; font-size: 0.95rem; line-height: 1.5; color: var(--text); }
+.step-text .step-aside { margin-top: 6px; color: var(--text-dim); font-size: 0.85rem; }
+.step-num {
+  flex: none;
+  font-family: "Bungee", "Segoe UI", sans-serif;
+  color: var(--gold);
+  font-size: 1.05rem;
+}
+.step img { display: block; width: 100%; border-top: 1px solid var(--border); background: var(--panel-2); }
+
+.alt-launch {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 6px 14px;
+}
+.alt-launch > summary {
+  cursor: pointer;
+  font-weight: 800;
+  color: var(--text-dim);
+  padding: 10px 6px;
+  user-select: none;
+}
+.alt-launch > summary:hover { color: var(--text); }
+.alt-launch .step { margin: 12px 0; }
+
+.guide-footnote {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+}
+.guide-footnote img { width: 200px; flex: none; border-radius: 8px; border: 1px solid var(--border); }
+.guide-footnote p { margin: 0; color: var(--text-dim); font-weight: 700; font-size: 0.9rem; line-height: 1.5; }
+@media (max-width: 560px) { .guide-footnote { flex-direction: column; } .guide-footnote img { width: 100%; } }
+
 /* ---- footer ---- */
 footer {
   margin-top: auto;
