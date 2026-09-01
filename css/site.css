@@ -282,6 +282,20 @@ a.card:hover .cta { filter: brightness(1.12); }
 }
 .step img { display: block; width: 100%; border-top: 1px solid var(--border); background: var(--panel-2); }
 
+/* red pulsing callout: the "blocked by security settings" aside */
+.pulse-alert {
+  color: var(--red) !important;
+  font-weight: 800 !important;
+  animation: pulse-alert 1.6s ease-in-out infinite;
+}
+@keyframes pulse-alert {
+  0%, 100% { opacity: 1; text-shadow: 0 0 0 rgba(224, 57, 46, 0); }
+  50% { opacity: 0.55; text-shadow: 0 0 14px rgba(224, 57, 46, 0.55); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse-alert { animation: none; }
+}
+
 .alt-launch {
   border: 1px dashed var(--border);
   border-radius: var(--radius);
