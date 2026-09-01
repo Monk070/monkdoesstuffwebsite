@@ -60,6 +60,8 @@ a { color: var(--mint); }
   background-clip: text;
   color: transparent;
 }
+/* the .fun, worn small - same trick as the hookline.fun wordmark */
+#site-logo .tld { font-size: 0.34em; margin-left: 5px; }
 #site-tag { color: var(--text-dim); margin: 10px 0 22px; }
 
 /* the wordmark is a button: back to Games from anywhere */
