@@ -304,11 +304,17 @@ a.card:hover .cta { filter: brightness(1.12); }
 .alt-launch > summary {
   cursor: pointer;
   font-weight: 800;
-  color: var(--text-dim);
+  color: var(--red);
   padding: 10px 6px;
   user-select: none;
+  animation: pulse-alert 1.6s ease-in-out infinite;
 }
-.alt-launch > summary:hover { color: var(--text); }
+.alt-launch > summary:hover { animation-play-state: paused; opacity: 1; }
+/* once it's open, the job is done - settle down and let people read */
+.alt-launch[open] > summary { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  .alt-launch > summary { animation: none; }
+}
 .alt-launch .step { margin: 12px 0; }
 
 .guide-footnote {
