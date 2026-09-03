@@ -219,6 +219,23 @@ a.card:hover .cta { filter: brightness(1.12); }
 /* stays full-colour even on the greyed coming-soon art */
 .card.soon .tiktok-badge { filter: none; }
 
+/* Windows sticker: the downloadable interactive versions are Windows-only */
+.windows-badge {
+  position: absolute;
+  top: 10px; left: 52px;
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  background: #0078d4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px #000a, 0 0 0 2px #ffffff22;
+  transform: rotate(6deg);
+  z-index: 2;
+}
+.windows-badge svg { width: 18px; height: 18px; color: #fff; }
+.card.soon .windows-badge { filter: none; }
+
 /* ---- install & play guide (hookline-tiktok.html) ---- */
 .guide { width: min(760px, 94vw); display: flex; flex-direction: column; gap: 34px; padding: 26px 0 30px; }
 
