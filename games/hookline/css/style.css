@@ -1467,3 +1467,52 @@ main#game.swap-out :is(#round-badges, #guess-history, #winner-banner, #clipbar,
 .sgroup[open] > summary { color: var(--text); border-bottom: 1px solid var(--border); }
 .sgroup > .setting-row { padding: 10px 12px 4px; }
 .sgroup > .setting-row:last-child { padding-bottom: 12px; }
+
+/* ---------- sliding side columns + edge tabs (Filmoji port) ---------- */
+#layout {
+  grid-template-columns: var(--left-track, 456px) minmax(0, 1fr) var(--right-track, 456px);
+  transition: grid-template-columns 0.3s ease;
+}
+body.left-hidden { --left-track: 0px; }
+body.right-hidden { --right-track: 0px; }
+body { overflow-x: hidden; }
+
+#left-col, #right-col { transition: transform 0.3s ease; }
+#left-col { width: 456px; }
+body.left-hidden #left-col { transform: translateX(calc(-100% - 24px)); }
+body.right-hidden #right-col { transform: translateX(calc(100% + 24px)); }
+
+.side-tab {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  width: 24px;
+  height: 60px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text-dim);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: left 0.3s ease, right 0.3s ease, color 0.15s ease;
+}
+.side-tab:hover { color: var(--text); }
+.side-tab svg { width: 17px; height: 17px; transition: transform 0.3s ease; }
+
+#left-tab { left: 472px; border-radius: 0 9px 9px 0; border-left: none; }
+body.left-hidden #left-tab { left: 0; }
+body.left-hidden #left-tab svg { transform: rotate(180deg); }
+
+#right-tab { right: 472px; border-radius: 9px 0 0 9px; border-right: none; }
+body.right-hidden #right-tab { right: 0; }
+body.right-hidden #right-tab svg { transform: rotate(180deg); }
+
+@media (max-width: 1020px) {
+  .side-tab { display: none; }   /* stacked layout - nothing to slide */
+}
+
+/* plain viewer chatter in the console (All chat mode) - dimmed, no accent */
+#chat-feed li.talk { opacity: 0.65; font-style: italic; }

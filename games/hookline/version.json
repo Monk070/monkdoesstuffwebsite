@@ -1,4 +1,5 @@
-{
+﻿{
   "version": "1.1.0",
-  "notes": "Software update check added; catalogue refresh stays separate."
+  "released": "2026-09-03",
+  "notes": "Hookline 1.1: software update check, sliding side columns, viewer-console chat filter."
 }

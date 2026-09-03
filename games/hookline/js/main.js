@@ -46,6 +46,7 @@ async function init() {
   applySpinPos(state.settings.spinPos);
 
   wireRebuild(); // shows the Update-catalogue button when the local server is present
+  wireUiPrefs(); // slide tabs + viewer-console filter
 
   try {
     catalogMeta = await loadCatalog();
@@ -61,6 +62,44 @@ async function init() {
   startEndlessRound();
 }
 
+// ---------- UI prefs: slide tabs + console filter (kept out of state) ----------
+
+const uiPrefs = (() => {
+  const d = { leftHidden: false, rightHidden: false, showTalk: false };
+  try { return { ...d, ...JSON.parse(localStorage.getItem('hookline.ui.v1') ?? '{}') }; }
+  catch { return d; }
+})();
+
+function saveUiPrefs() {
+  try { localStorage.setItem('hookline.ui.v1', JSON.stringify(uiPrefs)); } catch { /* non-fatal */ }
+}
+
+function wireUiPrefs() {
+  document.body.classList.toggle('left-hidden', uiPrefs.leftHidden);
+  document.body.classList.toggle('right-hidden', uiPrefs.rightHidden);
+  $('left-tab').addEventListener('click', () => {
+    uiPrefs.leftHidden = !uiPrefs.leftHidden;
+    saveUiPrefs();
+    document.body.classList.toggle('left-hidden', uiPrefs.leftHidden);
+  });
+  $('right-tab').addEventListener('click', () => {
+    uiPrefs.rightHidden = !uiPrefs.rightHidden;
+    saveUiPrefs();
+    document.body.classList.toggle('right-hidden', uiPrefs.rightHidden);
+  });
+  const paintChatShow = () => {
+    $('chatshow-cmds').classList.toggle('active', !uiPrefs.showTalk);
+    $('chatshow-all').classList.toggle('active', uiPrefs.showTalk);
+  };
+  paintChatShow();
+  $('chatshow-cmds').addEventListener('click', () => {
+    uiPrefs.showTalk = false; saveUiPrefs(); paintChatShow(); renderFeed();
+  });
+  $('chatshow-all').addEventListener('click', () => {
+    uiPrefs.showTalk = true; saveUiPrefs(); paintChatShow(); renderFeed();
+  });
+}
+
 // ---------- catalogue updates (local server only) ----------
 
 async function wireRebuild() {
@@ -73,6 +112,27 @@ async function wireRebuild() {
   $('row-catalog').hidden = false;
   renderCatalogInfo();
   $('rebuild-btn').addEventListener('click', startRebuild);
+  // software updates are separate from the catalogue: the button checks the
+  // published version on monkdoesstuff.fun (new features need the new zip)
+  $('row-update').hidden = false;
+  $('update-btn').addEventListener('click', checkGameUpdate);
+}
+
+async function checkGameUpdate() {
+  const note = $('update-note');
+  note.textContent = 'Checking monkdoesstuff.fun…';
+  try {
+    const check = await (await fetch('/api/update/check')).json();
+    if (check.error) {
+      note.textContent = `You're on v${check.local} (${check.error})`;
+      return;
+    }
+    note.textContent = check.updateAvailable
+      ? `✔ v${check.remote} is out (you're on v${check.local}) — grab the new zip at monkdoesstuff.fun! ${check.notes || ''}`
+      : `✔ Game is up to date (v${check.local})`;
+  } catch {
+    note.textContent = '✖ Local server not reachable';
+  }
 }
 
 function renderCatalogInfo() {
@@ -1329,18 +1389,29 @@ function ingest(msg, source = 'live') {
   if (msg.event === 'chat' && msg.data?.follows >= 1) {
     markFollower(msg.data.uniqueId);
   }
+  // plain chatter never reaches the game, but in All-chat mode it shows in
+  // the viewer console (dimmed) so the streamer can read the room
+  if (msg.event === 'chat' && msg.data?.comment && !String(msg.data.comment).trim().startsWith('!')) {
+    addFeedLine(`<span class="cf-name">${escapeHtml(msg.data.nickname || msg.data.uniqueId || '')}</span>: ${escapeHtml(msg.data.comment)}`, false, 'talk');
+  }
   chat.handleEvent(msg);
 }
 
-function addFeedLine(html, highlight) {
-  feedLines.unshift({ html, highlight });
+function addFeedLine(html, highlight, cls = '') {
+  feedLines.unshift({ html, highlight, cls });
   if (feedLines.length > 60) feedLines.pop();
+  renderFeed();
+}
+
+function renderFeed() {
   const feed = $('chat-feed');
   feed.innerHTML = '';
   for (const line of feedLines) {
+    if (line.cls === 'talk' && !uiPrefs.showTalk) continue;
     const li = document.createElement('li');
     li.innerHTML = line.html;
     if (line.highlight) li.className = 'hit';
+    if (line.cls) li.classList.add(line.cls);
     feed.appendChild(li);
   }
 }
