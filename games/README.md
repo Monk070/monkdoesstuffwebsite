@@ -1,4 +1,4 @@
-# MonkDoesStuff — games
+﻿# MonkDoesStuff — games
 
 Static builds of Dan's TikTok Live games, copied from their dev folders for
 hosting on monkdoesstuff.fun (Cloudflare Pages friendly: no build step,
@@ -9,6 +9,7 @@ plain ES modules, each game is self-contained in its folder).
 | `hookline/` | Hookline — Heardle-style song guessing (full 4MB catalogue included) | `D:\Coding\Hookline` |
 | `stillshot/` | Stillshot — guess the film from a frame (starter catalogue only — full one needs a TMDB build in the source project) | `D:\Coding\Stillshot` |
 | `tiktokcafe/` | TikTok Café — cozy pixel café run by chat | `D:\Coding\TiktokCafe` |
+| `letterbloom/` | Letter Bloom — relaxing word-wheel crossword puzzle (fully playable in browser, no server needed) | `D:\Coding\Games\LetterBloom` |
 | `pricetag/` | PriceTag — guess the price (Vinted tat + Rightmove property mode, currency chaos) | `D:\Coding\PriceTag` |
 
 ## What was deliberately stripped from the copies

@@ -1,0 +1,42 @@
+﻿[
+    {
+        "name":  "Breathe For Me",
+        "url":  "./audio/Breathe For Me.mp3"
+    },
+    {
+        "name":  "Delicate",
+        "url":  "./audio/Delicate.mp3"
+    },
+    {
+        "name":  "Fox",
+        "url":  "./audio/Fox.mp3"
+    },
+    {
+        "name":  "In The Keys",
+        "url":  "./audio/In The Keys.mp3"
+    },
+    {
+        "name":  "Moonlight Murmurs",
+        "url":  "./audio/Moonlight Murmurs.mp3"
+    },
+    {
+        "name":  "Piano Dance",
+        "url":  "./audio/Piano Dance.mp3"
+    },
+    {
+        "name":  "Take My Heart",
+        "url":  "./audio/Take My Heart.mp3"
+    },
+    {
+        "name":  "The Trio",
+        "url":  "./audio/The Trio.mp3"
+    },
+    {
+        "name":  "Upright",
+        "url":  "./audio/Upright.mp3"
+    },
+    {
+        "name":  "Whispers",
+        "url":  "./audio/Whispers.mp3"
+    }
+]
