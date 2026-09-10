@@ -329,7 +329,18 @@
     gap: 15px;
 }
 
-.help-button, .save-button {
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.back-button {
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.help-button, .save-button, .back-button {
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -349,7 +360,7 @@
     justify-content: center;
 }
 
-.help-button:hover, .save-button:hover {
+.help-button:hover, .save-button:hover, .back-button:hover {
     transform: scale(1.1);
     background: rgba(255, 255, 255, 0.25);
     box-shadow: 

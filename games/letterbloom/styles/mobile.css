@@ -28,6 +28,7 @@
         margin-bottom: 10px;
         flex-direction: column;
         gap: 5px;
+        position: relative;
     }
     
     .game-header h1 {
@@ -36,21 +37,29 @@
         margin-bottom: 5px;
     }
     
+    /* Keep the title centred as before; pin the back arrow to the corner */
+    .back-button {
+        position: absolute;
+        left: 10px;
+        top: 8px;
+        z-index: 5;
+    }
+
     .header-right {
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-    
+
     .level-info {
         padding: 8px 15px;
         gap: 15px;
         font-size: 0.9em;
         flex: 1;
     }
-    
-    .help-button {
+
+    .help-button, .back-button {
         width: 30px;
         height: 30px;
         font-size: 1em;
