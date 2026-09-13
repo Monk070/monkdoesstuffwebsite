@@ -1,5 +1,6 @@
 {
-  "version": "1.1.1",
+  "version": "1.2.0",
   "released": "2026-09-13",
-  "notes": "Hookline 1.1.1: fixed !points/!bank swallowing guesses for songs that start with a command word (Points of Authority, Bank Account, Point of No Return)."
+  "notes": "Hookline 1.2: the Update button now installs new versions itself — downloads the zip, updates the game in place and restarts the server.",
+  "zip": "https://github.com/Monk070/monkdoesstuffwebsite/releases/download/hookline-v1/Hookline.zip"
 }
