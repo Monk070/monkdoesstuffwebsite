@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
-  "released": "2026-09-03",
-  "notes": "Hookline 1.1: software update check, sliding side columns, viewer-console chat filter."
+  "version": "1.1.1",
+  "released": "2026-09-13",
+  "notes": "Hookline 1.1.1: fixed !points/!bank swallowing guesses for songs that start with a command word (Points of Authority, Bank Account, Point of No Return)."
 }
