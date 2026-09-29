@@ -1,6 +1,9 @@
 {
-  "version": "1.2.0",
-  "released": "2026-09-13",
-  "notes": "Hookline 1.2: the Update button now installs new versions itself — downloads the zip, updates the game in place and restarts the server.",
-  "zip": "https://github.com/Monk070/monkdoesstuffwebsite/releases/download/hookline-v1/Hookline.zip"
+  "version": "1.3.0",
+  "released": "2026-09-29",
+  "notes": "Hookline 1.3: updates are now signed and checked before they install, and a failed update rolls itself back. Safer handling of viewer names, messages and profile pictures, and the catalogue download is checked before it replaces yours.",
+  "zip": "https://github.com/Monk070/monkdoesstuffwebsite/releases/download/hookline-app-v1.3.0/Hookline-1.3.0.zip",
+  "sha256": "de2fb104dd301397a69b5d23604028a757ec65fecfa1907504d0ddc68f0d4e6e",
+  "size": 39225001,
+  "signature": "39yvYEvPOGrb17Q65L73Jd7kb6/hnsgAAAoVL4bF4i355C1B7aU1Juxlcxl2u2WKFEfkpVntcRjyT7AVKFTIAg=="
 }
